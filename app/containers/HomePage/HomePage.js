@@ -1,55 +1,67 @@
 
 import React from 'react';
-import { intlShape, injectIntl, FormattedMessage } from 'react-intl';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import actions from './actions';
 
-import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import Icon from '@material-ui/core/Icon';
+import Typography from '@material-ui/core/Typography';
+import Toolbar from '@material-ui/core/Toolbar';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import FormDialog from '../../components/FormDialog';
 
-const Root = styled.div`
-    display: 'flex'
-`;
+const styles = ({    
+    appBar: {
+      top: 0,
+      bottom: 'auto',
+    },
 
+    toolbar: {
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
+
+    fabButton: {
+      position: 'absolute',
+      zIndex: 1,
+      top: 30,
+      left: 0,
+      right: 0,
+      margin: '0 auto',
+    },
+  });
 
 class HomePage extends React.PureComponent {
     constructor(props) {
         super(props);
-
-        this.state = {
-            open: true
-        }
     }
-    
-    handleDrawerOpen = () => {
-        this.setState({ open: true });
-    };
-    
-    handleDrawerClose = () => {
-        this.setState({ open: false });
-    };        
   
     render() {
-        return (
-            <Root>
-                <CssBaseline />
-                <IconButton
-              color="inherit"
-              aria-label="Open drawer"              
-            >
-              <MenuIcon />
-            </IconButton>
-            </Root>
-          );
+        const { classes } = this.props;
+
+        return (            
+            <AppBar position="fixed" color="primary" className={classes.appBar}>
+                <Toolbar className={classes.appBar}>
+                    <Typography variant="h6" color="inherit" noWrap>
+                        Dashboard
+                    </Typography>                                                
+                    <Fab color="secondary" aria-label="Add" className={classes.fabButton}
+                            onClick={() => { this.props.dispatch(actions.openAddExpenseForm()); }}>
+                        <AddIcon />
+                    </Fab>
+                    <FormDialog status={this.props.home.expenseFormOpen} 
+                                onClose={() => { this.props.dispatch(actions.closeExpenseForm()); }} 
+                                onSubmit={() => { this.props.dispatch(actions.addExpense()) }}>
+                    </FormDialog>
+                </Toolbar>
+            </AppBar>            
+        );
     }
 }
 
-HomePage.propTypes = {
-	intl: intlShape.isRequired,
+HomePage.propTypes = {	
     dispatch: PropTypes.func.isRequired
 };
 
-export default injectIntl(HomePage);
+export default withStyles(styles)(HomePage);
