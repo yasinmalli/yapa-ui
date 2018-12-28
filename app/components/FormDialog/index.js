@@ -5,60 +5,74 @@ import messages from './messages';
 import { compose } from 'redux';
 
 import { withStyles } from '@material-ui/core/styles';
-import { getIntl } from '../../utils/localizations';
 
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, 
-    FormControl, InputLabel, OutlinedInput, MenuItem,
-    Select } 
+import { Button, Dialog, DialogActions, DialogContent, 
+    DialogTitle, FormControl, InputLabel, MenuItem, Select, TextField } 
 from '@material-ui/core';
 
 const styles = theme => ({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    formControl: {
-      margin: theme.spacing.unit,
-      minWidth: 120,
-    }    
-  });
+});
 
-class FormDialog extends React.Component {  
+class FormDialog extends React.Component { 
+  
+  state = {
+    price: 0,
+    category: ''          
+  }
+  
+
+  handleChange = name => event => {    
+    this.setState({[name]: event.target.value});    
+  };
+
+  onSubmit = () => {    
+    this.props.addExpense({price: this.state.price, category: this.state.category});
+  };
+
   render() {      
-    const { classes } = this.props;
-    const intl = getIntl();
-
+    const categories = this.props.categories.map(
+        (category) => { 
+            return <MenuItem key={category.value} value={category.value}>{category.label}</MenuItem>
+        }
+    )
+    
     return (
       <div>        
         <Dialog open={this.props.status} onClose={this.props.onClose}>
             <DialogTitle id="form-dialog-title">{this.props.intl.formatMessage(messages.title)}</DialogTitle>
             <DialogContent>
-                <form className={classes.root} noValidate autoComplete="off">
-                    <FormControl className={classes.formControl}>
-                        <InputLabel ref={ref => { this.InputLabelRef = ref; }} htmlFor="outlined-age-simple">
-                            {this.props.intl.formatMessage(messages.category)}
-                        </InputLabel>
-                        <Select value={10} onChange={this.handleChange}
-                                input={
-                                <OutlinedInput
-                                    labelWidth={49}
-                                    name="age"
-                                    id="outlined-age-simple"
-                                />
-                                }>
-                            <MenuItem value=""><em>None</em></MenuItem>
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
-                        </Select>
+                <form noValidate autoComplete="off">
+                    <FormControl fullWidth margin="dense">
+                        <TextField autoFocus margin="dense" id="name" label="Price (CAD)" type="number" fullWidth
+                        value={this.state.price} onChange={this.handleChange('price')}/>
                     </FormControl>                    
-                </form>                
+                    <FormControl fullWidth margin="dense">
+                        <InputLabel htmlFor="expense-main-category">Main Category</InputLabel>
+                        <Select value={this.state.category} 
+                            onChange={this.handleChange('category')}
+                            margin="dense"
+                            inputProps={{ name: 'main-category', id: 'expense-main-category' }}>                            
+                            
+                            {categories}                            
+                        </Select>                        
+                    </FormControl>
+                    <FormControl fullWidth margin="dense">
+                        <InputLabel htmlFor="expense-sub-category">SubCategory</InputLabel>
+                        <Select value={this.state.category} 
+                            onChange={this.handleChange('category')}
+                            margin="dense"
+                            inputProps={{ name: 'sub-category', id: 'expense-sub-category' }}>                            
+                            
+                            {categories}                            
+                        </Select>                        
+                    </FormControl>                    
+                </form>            
             </DialogContent>
           <DialogActions>
             <Button onClick={this.props.onClose} color="primary">
                 {this.props.intl.formatMessage(messages.cancel)}
             </Button>
-            <Button onClick={this.props.onSubmit} color="primary">
+            <Button onClick={this.onSubmit} color="primary">
                 {this.props.intl.formatMessage(messages.submit)}
             </Button>
           </DialogActions>

@@ -13,9 +13,10 @@ export function closeExpenseForm() {
 	};
 }
 
-export function addExpense() {
+export function addExpense(expense) {
     return {
-        type: ActionTypes.ADD_EXPENSE
+        type: ActionTypes.ADD_EXPENSE,
+        expense
 	};
 }
 

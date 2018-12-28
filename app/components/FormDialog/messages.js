@@ -12,7 +12,7 @@ export default defineMessages({
     },
     submit: {
         id: 'app.components.FormDialog.submit',
-		defaultMessage: 'Submit'
+		defaultMessage: 'ADD'
     },
     category: {
         id: 'app.components.FormDialog.category',

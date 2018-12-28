@@ -1,11 +1,11 @@
 import { takeEvery } from 'redux-saga';
 import { put } from 'redux-saga/effects';
-import actionTypes, { ADD_EXPENSE } from './constants';
+import actionTypes from './constants';
 import actions from './actions';
 
-export function * addExpense() {
+export function * addExpense(action) {
 	try {
-		console.log('Submit button clicked...');
+		console.log(`category: ${action.expense.category} price: ${action.expense.price}`);
 		yield put(actions.addExpenseSuccess());
 	} catch(e) {
 		yield put(actions.addExpenseError(e));

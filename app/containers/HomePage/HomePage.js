@@ -52,7 +52,8 @@ class HomePage extends React.PureComponent {
                     </Fab>
                     <FormDialog status={this.props.home.expenseFormOpen} 
                                 onClose={() => { this.props.dispatch(actions.closeExpenseForm()); }} 
-                                onSubmit={() => { this.props.dispatch(actions.addExpense()) }}>
+                                addExpense={(expense) => { this.props.dispatch(actions.addExpense(expense)); }}
+                                categories={this.props.home.categories}>
                     </FormDialog>
                 </Toolbar>
             </AppBar>            
