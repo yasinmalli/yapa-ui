@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import FormDialog from '../../components/FormDialog';
+import ExpenseDialog from '../ExpenseDialog'
 
 const styles = ({    
     appBar: {
@@ -50,11 +50,9 @@ class HomePage extends React.PureComponent {
                             onClick={() => { this.props.dispatch(actions.openAddExpenseForm()); }}>
                         <AddIcon />
                     </Fab>
-                    <FormDialog status={this.props.home.expenseFormOpen} 
-                                onClose={() => { this.props.dispatch(actions.closeExpenseForm()); }} 
-                                addExpense={(expense) => { this.props.dispatch(actions.addExpense(expense)); }}
-                                categories={this.props.home.categories}>
-                    </FormDialog>
+                    <ExpenseDialog status={this.props.home.expenseFormOpen} 
+                                onClose={() => { this.props.dispatch(actions.closeExpenseForm()); }}>
+                    </ExpenseDialog>
                 </Toolbar>
             </AppBar>            
         );

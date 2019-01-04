@@ -13,3 +13,4 @@ export default defineMessages({
     defaultMessage: 'This is the HomePage container!',
   },
 });
+

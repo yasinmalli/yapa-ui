@@ -13,30 +13,7 @@ export function closeExpenseForm() {
 	};
 }
 
-export function addExpense(expense) {
-    return {
-        type: ActionTypes.ADD_EXPENSE,
-        expense
-	};
-}
-
-export function addExpenseSuccess() {
-    return {
-        type: ActionTypes.ADD_EXPENSE_SUCCESS
-	};
-}
-
-export function addExpenseError() {
-    return {
-        type: ActionTypes.ADD_EXPENSE_ERROR
-	};
-}
-
-
 export default {
     openAddExpenseForm,
-    closeExpenseForm,
-    addExpense,
-    addExpenseSuccess,
-    addExpenseError
+    closeExpenseForm
 }
