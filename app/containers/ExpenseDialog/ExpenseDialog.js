@@ -84,10 +84,10 @@ class ExpenseDialog extends React.PureComponent {
                     </form>            
                 </DialogContent>
               <DialogActions>
-                <Button onClick={this.props.onClose} color="primary">
+                <Button onClick={ () => this.props.onClose() } color="primary">
                     {this.props.intl.formatMessage(messages.cancel)}
                 </Button>
-                <Button onClick={ e =>  { dispatch(actions.addExpense()); this.props.onClose(); } } color="primary">
+                <Button onClick={ () => { dispatch(actions.addExpense()); this.props.onClose(); } } color="primary">
                     {this.props.intl.formatMessage(messages.submit)}
                 </Button>
               </DialogActions>

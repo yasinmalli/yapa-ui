@@ -14,6 +14,7 @@ export const SET_DESCRIPTION = 'app/ExpenseDialog/SET_DESCRIPTION';
 export const ADD_EXPENSE = 'app/ExpenseDialog/ADD_EXPENSE';
 export const ADD_EXPENSE_SUCCESS = 'app/ExpenseDialog/ADD_EXPENSE_SUCCESS';
 export const ADD_EXPENSE_ERROR = 'app/ExpenseDialog/ADD_EXPENSE_ERROR';
+export const RESET_EXPENSE_DIALOG = 'app/ExpenseDialog/RESET_EXPENSE_DIALOG';
 
 export default {
     GET_MAIN_CATEGORIES,
@@ -30,5 +31,6 @@ export default {
     SET_DESCRIPTION,
     ADD_EXPENSE,
     ADD_EXPENSE_SUCCESS,
-    ADD_EXPENSE_ERROR
+    ADD_EXPENSE_ERROR,
+    RESET_EXPENSE_DIALOG
 }

@@ -18,6 +18,15 @@ export const initialState = fromJS({
     description: ''
 });
 
+function resetExpenseDialogReducer(state) {
+    // return state.set('mainCategory', {})
+    //             .set('subCategory', {})
+    //             .set('price', 0)
+    //             .set('expenseType', '')
+    //             .set('spentAt', '')
+    //             .set('description', '');
+}
+
 function expenseDialogReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.GET_MAIN_CATEGORIES_SUCCESS:      
@@ -33,9 +42,12 @@ function expenseDialogReducer(state = initialState, action) {
     case actionTypes.SELECT_EXPENSE_TYPE:
         return state.set('expenseType', action.expenseType);
     case actionTypes.SET_SPENT_AT:
-      return state.set('spentAt', action.value);
+        return state.set('spentAt', action.value);
     case actionTypes.SET_DESCRIPTION:
-      return state.set('description', action.value);
+        return state.set('description', action.value);
+    case actionTypes.ADD_EXPENSE_SUCCESS:        
+    case actionTypes.RESET_EXPENSE_DIALOG:
+        return resetExpenseDialogReducer(state);
     default:
         return state;
   }

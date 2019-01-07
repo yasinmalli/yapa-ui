@@ -19,11 +19,8 @@ export function * getMainCategories() {
 export function * getSubCategories() {
   try {
       const state = yield select(makeSelectExpenseDialog());
-      
-      var queryParams = {
-          mainCategoryId: `${state.mainCategory.selected}`
-      };
-      var subCategories = yield call(apiClient, 'subcategory', queryParams);
+            
+      var subCategories = yield call(apiClient, `maincategory/${state.mainCategory.selected}/subcategories`);
       yield put(actions.getSubCategoriesSuccess(subCategories));
   }
   catch (ex) {

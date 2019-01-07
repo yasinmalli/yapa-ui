@@ -13,7 +13,14 @@ export function closeExpenseForm() {
 	};
 }
 
+export function getExpenses() { return { type: ActionTypes.GET_EXPENSES } }
+export function getExpensesSuccess(expenses) { return { type: ActionTypes.GET_EXPENSES_SUCCESS, expenses } }
+export function getExpensesError(err) { return { type: ActionTypes.GET_EXPENSES_ERROR, err } }
+
 export default {
     openAddExpenseForm,
-    closeExpenseForm
+    closeExpenseForm,
+    getExpenses,
+    getExpensesSuccess,
+    getExpensesError
 }

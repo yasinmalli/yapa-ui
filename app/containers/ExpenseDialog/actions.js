@@ -68,6 +68,8 @@ export function setSpentAt(value) { return { type: ActionTypes.SET_SPENT_AT, val
 
 export function setDescription(value) { return { type: ActionTypes.SET_DESCRIPTION, value }; }
 
+export function resetExpenseDialog() { return { type: ActionTypes.RESET_EXPENSE_DIALOG }; }
+
 export function addExpense() {
     return {
         type: ActionTypes.ADD_EXPENSE
@@ -103,5 +105,6 @@ export default {
     setDescription,
     addExpense,
     addExpenseSuccess,
-    addExpenseError
+    addExpenseError,
+    resetExpenseDialog
 }
