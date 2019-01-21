@@ -93,8 +93,8 @@ module.exports = require('./webpack.base.babel')({
     // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
     new OfflinePlugin({
       relativePaths: false,
-      publicPath: '/',
-      appShell: '/',
+      publicPath: './',
+      appShell: './',
 
       // No need to cache .htaccess. See http://mxs.is/googmp,
       // this is applied before any match in `caches` section
@@ -127,18 +127,7 @@ module.exports = require('./webpack.base.babel')({
       background_color: '#fafafa',
       theme_color: '#b1624d',
       inject: true,
-      ios: true,
-      icons: [
-        {
-          src: path.resolve('app/images/icon-512x512.png'),
-          sizes: [72, 96, 128, 144, 192, 384, 512],
-        },
-        {
-          src: path.resolve('app/images/icon-512x512.png'),
-          sizes: [120, 152, 167, 180],
-          ios: true,
-        },
-      ],
+      ios: true
     }),
 
     new HashedModuleIdsPlugin({
