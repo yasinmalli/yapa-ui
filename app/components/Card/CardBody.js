@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
-    padding: "0.9375rem 20px",
-    flex: "1 1 auto",
-    WebkitBoxFlex: "1",
-    position: "relative"
+    cardBody: {
+        padding: "15px 20px 15px 20px",
+        flex: "1 1 auto",
+        WebkitBoxFlex: "1",
+        position: "relative"
+    }
 };
 
 class CardBody extends React.PureComponent {

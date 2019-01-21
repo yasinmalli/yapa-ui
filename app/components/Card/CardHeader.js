@@ -4,11 +4,11 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
     cardHeader: {
-        padding: "0.75rem 1.25rem",
-        marginBottom: "0",
+        padding: "15px",        
         borderBottom: "none",
-        background: "transparent",
-        zIndex: "3 !important",
+        background: "transparent",        
+        margin: "-20px 15px 0px 15px",
+        borderRadius: "3px",
         /*"&$cardHeaderPlain,&$cardHeaderIcon,&$cardHeaderStats,&$warningCardHeader,&$successCardHeader,&$dangerCardHeader,&$infoCardHeader,&$primaryCardHeader,&$roseCardHeader": {
           margin: "0 15px",
           padding: "0",

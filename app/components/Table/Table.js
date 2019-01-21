@@ -13,8 +13,9 @@ const defaultFont = {
 const styles = theme => ({
     tableResponsive: {
         width: "100%",
-        marginTop: theme.spacing.unit * 3,
-        overflowX: "auto"
+        marginTop: theme.spacing.unit,
+        // overflowX: "auto",
+        // padding: "15px"
     },
 
     table: {
@@ -22,14 +23,15 @@ const styles = theme => ({
         width: "100%",
         maxWidth: "100%",
         backgroundColor: "transparent",
-        borderSpacing: "0",
         borderCollapse: "collapse"
     },
 
     tableHeadCell: {
         color: "inherit",
         ...defaultFont,
-        fontSize: "1em"
+        fontSize: "1em",
+        overflow: "hidden",
+        textOverflow: "ellipsis"
     },
 
     tableCell: {
@@ -50,8 +52,7 @@ const styles = theme => ({
 
 class DataTable extends React.PureComponent {
     render() {
-        const { classes, head, data, headerColor, columnWidth } = this.props;
-        console.log(data);
+        const { classes, head, data, headerColor, columnWidth } = this.props;        
         return (
             <div className={classes.tableResponsive}>
                 <Table className={classes.table}>
@@ -61,7 +62,7 @@ class DataTable extends React.PureComponent {
                             {
                                 head.map((prop, key) => {
                                     return (
-                                        <Grid item xs={columnWidth[key]}>
+                                        <Grid item xs={columnWidth[key]} zeroMinWidth>
                                             <TableCell className={classes.tableCell + " " + classes.tableHeadCell} key={key}>
                                                 {prop}
                                             </TableCell>

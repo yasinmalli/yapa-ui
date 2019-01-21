@@ -97,7 +97,7 @@ class HomePage extends React.PureComponent {
                                         headerColor="warning"
                                         head={["Transaction Date", "Transaction Details", "Category", "Price"]}
                                         data={this.props.home.expenses}
-                                        columnWidth={[3, 4, 4, 1]}
+                                        columnWidth={[3, 4, 3, 1]}
                                     />
                                     {/* <ExpenseList expenses={this.props.home.expenses}/> */}
                                 </CardBody>
