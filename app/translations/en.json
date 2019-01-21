@@ -1,1 +1,9 @@
-[]
+{
+  "app.containers.App.cancel": "Cancel",
+  "app.containers.ExpenseDialog.cancel": "Cancel",
+  "app.containers.ExpenseDialog.category": "Category",
+  "app.containers.ExpenseDialog.submit": "ADD",
+  "app.containers.ExpenseDialog.title": "Add Expense",
+  "app.containers.HomePage.header": "This is the HomePage container!",
+  "app.containers.NotFoundPage.header": "This is the NotFoundPage container!"
+}
