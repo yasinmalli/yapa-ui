@@ -21,8 +21,7 @@ phases:
         --exclude "index.html" --exclude "node_modules/*"
         --metadata-directive REPLACE --cache-control "max-age=2592000,public"
       
-      - >
-        aws cloudfront create-invalidation --paths /index.html
+      #- aws cloudfront create-invalidation --paths /index.html
 artifacts:
   files:
     - '**/*'
