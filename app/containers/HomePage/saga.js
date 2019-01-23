@@ -6,7 +6,7 @@ import actions from './actions';
 import { call, put, select } from 'redux-saga/effects';
 
 export function * getExpenses() {
-	try {		
+	try {				
 		var expenses = yield call(apiClient, 'expense');		
 		yield put(actions.getExpensesSuccess(expenses));
 	}

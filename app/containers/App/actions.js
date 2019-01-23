@@ -13,3 +13,9 @@ export function getEnvConfigSuccess(config) {
 		config: config
 	};
 }
+
+export function navigateToErrorPage() {
+	return {
+		type: ActionTypes.NAVIGATE_TO_ERROR_PAGE
+	};
+}

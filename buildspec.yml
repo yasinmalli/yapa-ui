@@ -8,16 +8,16 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - npm run build
+      - npm run commit:production
   post_build:
     commands:      
-      - aws s3 sync ./build s3://yapa-ui/static --exclude "*" --include "index.html" --metadata-directive REPLACE --cache-control "no-cache";      
+      - aws s3 sync ./build s3://$BUCKET_NAME/ --exclude "*" --include "index.html" --metadata-directive REPLACE --cache-control "no-cache";      
       #- >
       #  aws s3 sync ./build s3://yapa-ui/static 
       #  --exclude "*" --include "config.json" 
       # --metadata-directive REPLACE --cache-control "max-age=900,public" --content-type "application/json"      
       - >
-        aws s3 sync ./build s3://yapa-ui/static 
+        aws s3 sync ./build s3://$BUCKET_NAME/ 
         --exclude "index.html" --exclude "node_modules/*"
         --metadata-directive REPLACE --cache-control "max-age=2592000,public"
       

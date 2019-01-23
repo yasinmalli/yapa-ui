@@ -1,11 +1,13 @@
 import request from 'utils/request'
-import { call } from 'redux-saga/effects';
+import { call, select } from 'redux-saga/effects';
+import { selectConfig } from 'containers/App/selectors';
 
 // export default function * apiRequest(resource, queryParams, requestOptions) {
 export default function * apiRequest(resource, queryParams = {}, options = {}, headers = {}) {
 
-    // todo: config.base_url
-    var url = `https://localhost:44387/api/${resource}`;    
+    var config = yield select(selectConfig);
+    var url = `${config.api_url}/api/${resource}`;
+        
     const queryString = Object.keys(queryParams)
         .map((key) => { return `${key}=${queryParams[key]}`; })
         .join('&');
