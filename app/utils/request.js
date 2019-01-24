@@ -1,7 +1,7 @@
 import 'whatwg-fetch';
 
 export default function request(url, options) {
-    
+    console.log(`${url} with options ${options}`);
     return fetch(`${url}`, options)
         .then(response => {
             if (response.status >= 200 && response.status < 300) {
@@ -21,5 +21,5 @@ export default function request(url, options) {
                 return text ? JSON.parse(text) : {};
             });
         })
-        .catch(error => console.error(`Error: ${error}`));   
+        .catch(error => { console.error(`Error: ${error}`); });   
 }

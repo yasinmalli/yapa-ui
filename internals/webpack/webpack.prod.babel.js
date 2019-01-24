@@ -1,7 +1,6 @@
 // Important modules this config uses
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
 const OfflinePlugin = require('offline-plugin');
 const { HashedModuleIdsPlugin } = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -20,6 +19,7 @@ module.exports = require('./webpack.base.babel')({
   output: {
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].chunk.js',
+    publicPath: '' // script path (use current folder)
   },
 
   optimization: {
@@ -40,7 +40,7 @@ module.exports = require('./webpack.base.babel')({
         },
         parallel: true,
         cache: true,
-        sourceMap: true,
+        sourceMap: false,
       }),
     ],
     nodeEnv: 'production',
@@ -67,11 +67,11 @@ module.exports = require('./webpack.base.babel')({
         },
       },
     },
-    runtimeChunk: true,
+    runtimeChunk: false,
   },
 
   plugins: [
-    // Minify and optimize the index.html
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new HtmlWebpackPlugin({
       template: 'app/index.html',
       minify: {
@@ -87,43 +87,13 @@ module.exports = require('./webpack.base.babel')({
         minifyURLs: true,
       },
       inject: true,
-    }),
-
-    // Put it in the end to capture all the HtmlWebpackPlugin's
-    // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
-    new OfflinePlugin({
-      relativePaths: false,
-      publicPath: '/',
-      appShell: '/',
-
-      caches: {
-        main: [':rest:'],
-
-        // All chunks marked as `additional`, loaded after main section
-        // and do not prevent SW to install. Change to `optional` if
-        // do not want them to be preloaded at all (cached only when first loaded)
-        additional: ['*.chunk.js'],
-      },
-
-      // Removes warning for about `additional` section usage
-      safeToUseOptionalCaches: true,
-    }),
+    }),    
 
     new CompressionPlugin({
       algorithm: 'gzip',
       test: /\.js$|\.css$|\.html$/,
       threshold: 10240,
       minRatio: 0.8,
-    }),
-
-    new WebpackPwaManifest({
-      name: 'React Boilerplate',
-      short_name: 'React BP',
-      description: 'My React Boilerplate-based project!',
-      background_color: '#fafafa',
-      theme_color: '#b1624d',
-      inject: true,
-      ios: true
     }),
 
     new HashedModuleIdsPlugin({

@@ -6,8 +6,7 @@ import apiClient from '../../apiClient';
 import makeSelectExpenseDialog from './selectors';
 
 export function * getMainCategories() {
-    try {
-      console.log('called');
+    try {      
         var mainCategories = yield call(apiClient, 'maincategory');        
         yield put(actions.getMainCategoriesSuccess(mainCategories));
     }

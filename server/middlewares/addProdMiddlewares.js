@@ -15,4 +15,10 @@ module.exports = function addProdMiddlewares(app, options) {
   app.get('*', (req, res) =>
     res.sendFile(path.resolve(outputPath, 'index.html')),
   );
+
+  // app.get('*.js', (req, res, next) => {
+  //     req.url = req.url + '.gz';
+  //     res.set('Content-Encoding', 'gzip');
+  //     next();
+  // });
 };

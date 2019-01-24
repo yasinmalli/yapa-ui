@@ -12,6 +12,7 @@ import reducer from './reducer';
 import saga from './saga';
 import { makeSelectApp } from './selectors';
 import HomePage from '../HomePage';
+import ErrorPage from '../../components/ErrorPage'
 
 export class App extends React.PureComponent {
 	constructor(props) {
@@ -21,7 +22,8 @@ export class App extends React.PureComponent {
 	render() {
 		const content = (
 			<Switch>				
-				<Route path="/" render={() => <HomePage />} />				
+				<Route path="/" render={() => <HomePage />} />
+				<Route path="/error" render={() => <ErrorPage />} />				
 			</Switch>
 		);
 		return content;

@@ -6,10 +6,11 @@ import request from 'utils/request';
 import { getEnvConfigSuccess } from './actions';
 
 export function * getEnvConfig () {
-	try {
+	try {		
 		const response = yield call(request, 'config.json');
 		yield put(getEnvConfigSuccess(response));
 	} catch(err) {
+		console.log(`asdasd ${err}`);
 		yield call(navigateToErrorPage);
 	}
 }
