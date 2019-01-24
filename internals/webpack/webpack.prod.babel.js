@@ -1,8 +1,7 @@
 // Important modules this config uses
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const OfflinePlugin = require('offline-plugin');
-const { HashedModuleIdsPlugin } = require('webpack');
+const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
@@ -71,7 +70,6 @@ module.exports = require('./webpack.base.babel')({
   },
 
   plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
     new HtmlWebpackPlugin({
       template: 'app/index.html',
       minify: {
@@ -96,7 +94,7 @@ module.exports = require('./webpack.base.babel')({
       minRatio: 0.8,
     }),
 
-    new HashedModuleIdsPlugin({
+    new webpack.HashedModuleIdsPlugin({
       hashFunction: 'sha256',
       hashDigest: 'hex',
       hashDigestLength: 20,
