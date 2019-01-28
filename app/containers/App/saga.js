@@ -9,8 +9,7 @@ export function * getEnvConfig () {
 	try {		
 		const response = yield call(request, 'config.json');
 		yield put(getEnvConfigSuccess(response));
-	} catch(err) {
-		console.log(`asdasd ${err}`);
+	} catch(err) {		
 		yield call(navigateToErrorPage);
 	}
 }
