@@ -17,16 +17,15 @@ import ErrorPage from '../../components/ErrorPage'
 export class App extends React.PureComponent {
 	constructor(props) {
 		super(props);		
-		props.getEnvConfig();		
+		this.props.dispatch(getEnvConfig());
 	}
 	render() {
-		const content = (
+		return (
 			<Switch>				
 				<Route path="/" render={() => <HomePage />} />
 				<Route path="/error" render={() => <ErrorPage />} />				
-			</Switch>
+			</Switch>		
 		);
-		return content;
 	}
 }
 
@@ -45,9 +44,7 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps (dispatch) {
 	return {
-		getEnvConfig: () => {
-			dispatch(getEnvConfig());
-		}
+		dispatch,
 	};
 }
 

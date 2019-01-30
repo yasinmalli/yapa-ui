@@ -4,7 +4,8 @@ import moment from 'moment'
 
 const initialState = fromJS({
     expenseFormOpen: false,
-    expenses: []
+    expenses: [],
+    expensesFetched: false
 });
 
 function homeReducer(state = initialState, action) {
@@ -22,7 +23,7 @@ function homeReducer(state = initialState, action) {
                     `${e.price} CAD`
                 ];
             });
-            return state.set('expenses', expenseItems);
+            return state.set('expenses', expenseItems).set('expensesFetched', true);
 		default:
 			return state;
 	}

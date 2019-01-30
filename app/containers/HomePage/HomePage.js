@@ -61,14 +61,16 @@ class HomePage extends React.PureComponent {
     }
 
     componentDidMount() {        
-        this.props.dispatch(actions.getExpenses());
+        // todo: fix this => something to do with config loading
+        const self = this;
+        setTimeout(function(){ self.props.dispatch(actions.getExpenses()); }, 1000);
     }
   
     render() {
         const { classes } = this.props;
         
         return (
-            <BusySpinner busy={!!this.props.home.expenses}>
+            <BusySpinner busy={!this.props.home.expensesFetched}>
                 <div className={classes.root}>
                     <div>
                         <AppBar position="static" color="primary" className={classes.appBar}>
